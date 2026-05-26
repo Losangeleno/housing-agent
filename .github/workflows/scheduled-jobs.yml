@@ -3,7 +3,13 @@ name: Housing Agent Schedule
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 */6 * * *"
+    # UTC schedule tuned for America/Los_Angeles housing-posting windows:
+    # Daily at 06:30, 12:30, and 19:30 PT
+    # PST (UTC-8): 14:30, 20:30, 03:30 UTC
+    # PDT (UTC-7): 13:30, 19:30, 02:30 UTC
+    - cron: "30 13 * * *"
+    - cron: "30 19 * * *"
+    - cron: "30 2 * * *"
 
 concurrency:
   group: housing-agent-schedule
