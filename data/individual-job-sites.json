@@ -1,0 +1,57 @@
+[
+  {"source":"CITY_SAN_DIEGO","org":"City of San Diego","boardUrl":"https://www.governmentjobs.com/careers/sandiego","institutionType":"Municipal"},
+  {"source":"CITY_CARLSBAD","org":"City of Carlsbad","boardUrl":"https://www.governmentjobs.com/careers/carlsbad","institutionType":"Municipal"},
+  {"source":"CITY_CHULA_VISTA","org":"City of Chula Vista","boardUrl":"https://www.governmentjobs.com/careers/chulavista","institutionType":"Municipal"},
+  {"source":"CITY_CORONADO","org":"City of Coronado","boardUrl":"https://www.governmentjobs.com/careers/coronado","institutionType":"Municipal"},
+  {"source":"CITY_DEL_MAR","org":"City of Del Mar","boardUrl":"https://www.delmar.ca.us/223/Apply-For","institutionType":"Municipal"},
+  {"source":"CITY_EL_CAJON","org":"City of El Cajon","boardUrl":"https://www.governmentjobs.com/careers/elcajon","institutionType":"Municipal"},
+  {"source":"CITY_ENCINITAS","org":"City of Encinitas","boardUrl":"https://www.governmentjobs.com/careers/encinitasca","institutionType":"Municipal"},
+  {"source":"CITY_ESCONDIDO","org":"City of Escondido","boardUrl":"https://www.governmentjobs.com/careers/escondido","institutionType":"Municipal"},
+  {"source":"CITY_IMPERIAL_BEACH","org":"City of Imperial Beach","boardUrl":"https://www.governmentjobs.com/careers/imperialbeachca","institutionType":"Municipal"},
+  {"source":"CITY_LA_MESA","org":"City of La Mesa","boardUrl":"https://www.cityoflamesa.gov/1312/Career-Opportunities","institutionType":"Municipal"},
+  {"source":"CITY_LEMON_GROVE","org":"City of Lemon Grove","boardUrl":"https://www.lemongrove.ca.gov/our-government/human-resources/careers/","institutionType":"Municipal"},
+  {"source":"CITY_NATIONAL_CITY","org":"City of National City","boardUrl":"https://www.governmentjobs.com/careers/nationalca","institutionType":"Municipal"},
+  {"source":"CITY_OCEANSIDE","org":"City of Oceanside","boardUrl":"https://www.governmentjobs.com/careers/oceansideca","institutionType":"Municipal"},
+  {"source":"CITY_POWAY","org":"City of Poway","boardUrl":"https://www.governmentjobs.com/careers/poway","institutionType":"Municipal"},
+  {"source":"CITY_SAN_MARCOS","org":"City of San Marcos","boardUrl":"https://www.governmentjobs.com/careers/sanmarcos","institutionType":"Municipal"},
+  {"source":"CITY_SANTEE","org":"City of Santee","boardUrl":"https://www.cityofsanteeca.gov/departments/human-resources-risk-management","institutionType":"Municipal"},
+  {"source":"CITY_SOLANA_BEACH","org":"City of Solana Beach","boardUrl":"https://www.cityofsolanabeach.org/en/government/departments/human-resources-risk-management/employment-opportunities","institutionType":"Municipal"},
+  {"source":"CITY_VISTA","org":"City of Vista","boardUrl":"https://www.governmentjobs.com/careers/vista","institutionType":"Municipal"},
+
+  {"source":"COUNTY_SAN_DIEGO","org":"County of San Diego","boardUrl":"https://www.governmentjobs.com/careers/sdcounty","institutionType":"County"},
+  {"source":"SDCOE","org":"San Diego County Office of Education","boardUrl":"https://www.sdcoe.net/work-sdcoe","institutionType":"County Education"},
+
+  {"source":"PORT_SD","org":"Port of San Diego","boardUrl":"https://www.portofsandiego.org/careers","institutionType":"Special District/Regional"},
+  {"source":"SDCWA","org":"San Diego County Water Authority","boardUrl":"https://www.governmentjobs.com/jobs?keyword=San%20Diego%20County%20Water%20Authority&location=San%20Diego%2C%20CA","institutionType":"Special District/Regional"},
+  {"source":"MTS","org":"San Diego Metropolitan Transit System","boardUrl":"https://www.sdmts.com/inside-mts/careers","institutionType":"Special District/Regional"},
+  {"source":"NCTD","org":"North County Transit District","boardUrl":"https://gonctd.com/careers/","institutionType":"Special District/Regional"},
+  {"source":"SD_AIRPORT","org":"San Diego County Regional Airport Authority","boardUrl":"https://www.governmentjobs.com/jobs?keyword=San%20Diego%20County%20Regional%20Airport%20Authority&location=San%20Diego%2C%20CA","institutionType":"Special District/Regional"},
+
+  {"source":"COURT_SD","org":"San Diego Superior Court","boardUrl":"https://www.governmentjobs.com/careers/sdcourt","institutionType":"Judicial"},
+
+  {"source":"CALIFORNIA_STATE","org":"State of California (CalCareers)","boardUrl":"https://calcareers.ca.gov/CalHRPublic/Search/JobSearchResults.aspx","institutionType":"State"},
+  {"source":"FEDERAL_JOBS","org":"USAJOBS San Diego","boardUrl":"https://www.usajobs.gov/Search/Results?l=San%20Diego%2C%20California&k=IT","institutionType":"Federal"},
+
+  {"source":"TRIBAL_BARONA","org":"Barona Band of Mission Indians","boardUrl":"https://www.barona-nsn.gov/jobs","institutionType":"Tribal Government"},
+  {"source":"TRIBAL_CAMPO","org":"Campo Band of Kumeyaay Indians","boardUrl":"https://www.governmentjobs.com/jobs?keyword=Campo%20Band%20of%20Kumeyaay%20Indians&location=San%20Diego%2C%20CA","institutionType":"Tribal Government"},
+  {"source":"TRIBAL_JAMUL","org":"Jamul Indian Village","boardUrl":"https://www.governmentjobs.com/jobs?keyword=Jamul%20Indian%20Village&location=San%20Diego%2C%20CA","institutionType":"Tribal Government"},
+  {"source":"TRIBAL_PALA","org":"Pala Band of Mission Indians","boardUrl":"https://www.palatribe.com/","institutionType":"Tribal Government"},
+  {"source":"TRIBAL_RINCON","org":"Rincon Band of Luiseno Indians","boardUrl":"https://rincon-nsn.gov/","institutionType":"Tribal Government"},
+  {"source":"TRIBAL_SYCUAN","org":"Sycuan Band of the Kumeyaay Nation","boardUrl":"https://www.governmentjobs.com/jobs?keyword=Sycuan%20Band%20of%20the%20Kumeyaay%20Nation&location=San%20Diego%2C%20CA","institutionType":"Tribal Government"},
+  {"source":"TRIBAL_VIEJAS","org":"Viejas Band of Kumeyaay Indians","boardUrl":"https://viejas.com/","institutionType":"Tribal Government"},
+
+  {"source":"CC_SDCCD","org":"San Diego Community College District","boardUrl":"https://www.governmentjobs.com/careers/sdccd","institutionType":"Community College"},
+  {"source":"CC_SWC","org":"Southwestern College","boardUrl":"https://www.governmentjobs.com/careers/swc","institutionType":"Community College"},
+  {"source":"CC_GROSSMONT_CUYAMACA","org":"Grossmont-Cuyamaca Community College District","boardUrl":"https://www.governmentjobs.com/careers/gcccd","institutionType":"Community College"},
+  {"source":"CC_MIRACOSTA","org":"MiraCosta College","boardUrl":"https://www.governmentjobs.com/careers/miracosta","institutionType":"Community College"},
+  {"source":"CC_PALOMAR","org":"Palomar College","boardUrl":"https://www.governmentjobs.com/careers/palomar","institutionType":"Community College"},
+
+  {"source":"STATE_SDSU","org":"San Diego State University","boardUrl":"https://careers.sdsu.edu/en-us/listing/","institutionType":"State University"},
+  {"source":"STATE_CSUSM","org":"California State University San Marcos","boardUrl":"https://careers.csusm.edu/en-us/listing/","institutionType":"State University"},
+  {"source":"STATE_UCSD","org":"University of California San Diego","boardUrl":"https://employment.ucsd.edu/jobs","institutionType":"State University"},
+
+  {"source":"PRIVATE_USD","org":"University of San Diego","boardUrl":"https://jobs.sandiego.edu/","institutionType":"Private University"},
+  {"source":"PRIVATE_PLNU","org":"Point Loma Nazarene University","boardUrl":"https://jobs.pointloma.edu/","institutionType":"Private University"},
+  {"source":"PRIVATE_NU","org":"National University","boardUrl":"https://www.nu.edu/careers/","institutionType":"Private University"},
+  {"source":"PRIVATE_ALLIANT","org":"Alliant International University","boardUrl":"https://www.governmentjobs.com/jobs?keyword=Alliant%20International%20University&location=San%20Diego%2C%20CA","institutionType":"Private University"}
+]

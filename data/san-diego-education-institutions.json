@@ -1,0 +1,18 @@
+[
+  {"name":"San Diego Community College District","type":"Community College"},
+  {"name":"San Diego City College","type":"Community College"},
+  {"name":"San Diego Mesa College","type":"Community College"},
+  {"name":"San Diego Miramar College","type":"Community College"},
+  {"name":"Southwestern College","type":"Community College"},
+  {"name":"Grossmont College","type":"Community College"},
+  {"name":"Cuyamaca College","type":"Community College"},
+  {"name":"MiraCosta College","type":"Community College"},
+  {"name":"Palomar College","type":"Community College"},
+  {"name":"California State University San Marcos","type":"State University"},
+  {"name":"San Diego State University","type":"State University"},
+  {"name":"University of California San Diego","type":"State University"},
+  {"name":"Point Loma Nazarene University","type":"Private University"},
+  {"name":"University of San Diego","type":"Private University"},
+  {"name":"National University","type":"Private University"},
+  {"name":"Alliant International University","type":"Private University"}
+]

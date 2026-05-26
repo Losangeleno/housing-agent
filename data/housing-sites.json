@@ -1,0 +1,50 @@
+[
+  {
+    "source": "SDHC",
+    "org": "San Diego Housing Commission",
+    "siteUrl": "https://www.sdhc.org/housing-opportunities/",
+    "listingType": "Public Housing"
+  },
+  {
+    "source": "ZILLOW_SD",
+    "org": "Zillow San Diego Rentals",
+    "siteUrl": "https://www.zillow.com/san-diego-ca/rentals/",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APTS_SD",
+    "org": "Apartments.com San Diego",
+    "siteUrl": "https://www.apartments.com/san-diego-ca/",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "HOTPADS_SD",
+    "org": "HotPads San Diego",
+    "siteUrl": "https://hotpads.com/san-diego-ca/apartments-for-rent",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "CRAIGSLIST_SD",
+    "org": "Craigslist San Diego Housing",
+    "siteUrl": "https://sandiego.craigslist.org/search/apa",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "AFF_HOUSING_SD",
+    "org": "AffordableHousing.com San Diego",
+    "siteUrl": "https://www.affordablehousing.com/san-diego-county-ca/",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "UCSD_OFFCAMPUS",
+    "org": "UC San Diego Off-Campus Housing",
+    "siteUrl": "https://offcampushousing.ucsd.edu/listing",
+    "listingType": "Student / Community"
+  },
+  {
+    "source": "USD_OFFCAMPUS",
+    "org": "University of San Diego Off-Campus Housing",
+    "siteUrl": "https://www.places4students.com/Places/School?SchoolID=8YH3bNh6C5E%3D",
+    "listingType": "Student / Community"
+  }
+]

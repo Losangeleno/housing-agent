@@ -1,0 +1,62 @@
+name: Housing Agent Schedule
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 */6 * * *"
+
+concurrency:
+  group: housing-agent-schedule
+  cancel-in-progress: false
+
+jobs:
+  collect-and-notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Create .env
+        run: |
+          cat > .env << 'EOF'
+          NODE_ENV=production
+          HOUSING_QUERY=affordable housing
+          HOUSING_QUERIES=apartment,rental,waitlist open,voucher
+          PROFILE_PATH=./resume/housing-profile.pdf
+          MAX_RENT=2800
+          MIN_BEDROOMS=1
+          POSITIVE_SCORE_MIN=50
+          MIN_PROFILE_KEYWORD_HITS=1
+          TEAMS_FLOW_URL=${{ secrets.TEAMS_FLOW_URL }}
+          NODE_OPTIONS=--use-system-ca
+          HTTP_RETRY_ATTEMPTS=3
+          HTTP_RETRY_BASE_MS=1000
+          EOF
+
+      - name: Run collector
+        run: npm run collect:once
+
+      - name: Notify Teams
+        if: always()
+        run: npm run notify:teams
+
+      - name: Upload outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: housing-agent-outputs-${{ github.run_id }}
+          path: outputs/
+          if-no-files-found: warn
