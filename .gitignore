@@ -3,3 +3,5 @@ node_modules/
 outputs/
 resume/
 .envTEAMS_FLOW_URL*
+
+.npm-cache/
