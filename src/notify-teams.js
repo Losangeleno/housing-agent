@@ -39,6 +39,7 @@ const csvPath = "./outputs/positive_hits.csv";
 const summaryPath = "./outputs/run_summary.json";
 const allSitesCsvPath = "./outputs/all_sites_status.csv";
 const availabilityReportPath = "./outputs/site_availability_report.csv";
+const latestListingsPath = "./outputs/latest_listings.csv";
 
 function summarizeErrorBuckets(rows) {
   const buckets = { network: 0, timeout: 0, blocked: 0, parse: 0, unknown: 0 };
@@ -92,6 +93,8 @@ let siteSummaryLines = [];
 let health = "unknown";
 let criteriaLines = [];
 let runQueryLines = [];
+let topAvailabilityLines = [];
+let siteDetailLines = [];
 if (fs.existsSync(summaryPath)) {
   try {
     const summary = JSON.parse(fs.readFileSync(summaryPath, "utf8"));
@@ -140,14 +143,14 @@ if (fs.existsSync(allSitesCsvPath)) {
     const activeSites = statusRows
       .filter((r) => Number(r.jobCount || 0) > 0)
       .slice(0, 10)
-      .map((r) => `- ${r.org}: ${r.jobCount} job(s)`);
+      .map((r) => `- ${r.org}: ${r.jobCount} availabilities`);
 
     siteSummaryLines = [
       `Run health: ${health.toUpperCase()}`,
-      `All requested sites: checked ${totalSites}, with jobs ${withJobs}, errors ${errored}`,
+      `All requested sites: checked ${totalSites}, with availabilities ${withJobs}, errors ${errored}`,
       `Sites with no open positions: ${noOpenPositions}`,
       `Error buckets: network=${buckets.network}, timeout=${buckets.timeout}, blocked=${buckets.blocked}, parse=${buckets.parse}, unknown=${buckets.unknown}`,
-      ...(activeSites.length ? ["Sites with jobs:", ...activeSites] : []),
+      ...(activeSites.length ? ["Sites with availabilities:", ...activeSites] : []),
       ...(topErrors.length ? ["Top site errors:", ...topErrors] : []),
     ];
   }
@@ -165,7 +168,7 @@ if (fs.existsSync(allSitesCsvPath)) {
 
     siteSummaryLines = [
       `Run health: ${String(health).toUpperCase()}`,
-      `All requested sites: checked ${totalSites}, with jobs ${sitesWithJobs}, errors ${errored}`,
+      `All requested sites: checked ${totalSites}, with availabilities ${sitesWithJobs}, errors ${errored}`,
       `Error buckets: network=${Number(b.network || 0)}, timeout=${Number(b.timeout || 0)}, blocked=${Number(b.blocked || 0)}, parse=${Number(b.parse || 0)}, unknown=${Number(b.unknown || 0)}`,
       ...(topErrors.length ? ["Top site errors:", ...topErrors] : [])
     ];
@@ -174,12 +177,65 @@ if (fs.existsSync(allSitesCsvPath)) {
   }
 }
 
+if (fs.existsSync(latestListingsPath)) {
+  const raw = fs.readFileSync(latestListingsPath, "utf8").trim();
+  if (raw) {
+    const lines = raw.split(/\r?\n/);
+    const headers = parseCsvLine(lines[0] || "");
+    const listings = lines.slice(1).filter(Boolean).map((line) => {
+      const cols = parseCsvLine(line);
+      return Object.fromEntries(headers.map((h, i) => [h, cols[i] ?? ""]));
+    });
+    topAvailabilityLines = listings.slice(0, 10).map((l, i) => {
+      const title = l.title || "Untitled availability";
+      const org = l.org || "Unknown org";
+      const rent = l.rentValue ? `$${l.rentValue}` : "n/a";
+      const beds = l.bedrooms || "n/a";
+      const url = l.url || "";
+      return `${i + 1}. ${title}\n   Org: ${org}\n   Rent: ${rent}\n   Beds: ${beds}\n   Link: ${url}`;
+    });
+
+    const preferredOrgs = [
+      "HotPads San Diego",
+      "Craigslist San Diego Housing",
+      "AffordableHousing.com San Diego"
+    ];
+    const grouped = new Map();
+    for (const listing of listings) {
+      const org = listing.org || "Unknown org";
+      if (!grouped.has(org)) grouped.set(org, []);
+      grouped.get(org).push(listing);
+    }
+    const orgsWithData = [
+      ...preferredOrgs.filter((org) => grouped.has(org)),
+      ...Array.from(grouped.keys()).filter((org) => !preferredOrgs.includes(org))
+    ];
+    const detailBlocks = [];
+    for (const org of orgsWithData.slice(0, 6)) {
+      const items = grouped.get(org) || [];
+      if (!items.length) continue;
+      detailBlocks.push(`- ${org} (${items.length} availabilities):`);
+      const itemLines = items.slice(0, 5).map((l, i) => {
+        const title = l.title || "Untitled availability";
+        const rent = l.rentValue ? `$${l.rentValue}` : "n/a";
+        const beds = l.bedrooms || "n/a";
+        const url = l.url || "";
+        return `  ${i + 1}. ${title} | Rent: ${rent} | Beds: ${beds} | ${url}`;
+      });
+      detailBlocks.push(...itemLines);
+    }
+    siteDetailLines = detailBlocks;
+  }
+}
+
 const text = [
-  `Housing Agent: ${newest.length} new criteria-aligned listing(s)`,
+  `Housing Agent: ${newest.length} new criteria-aligned availabilities`,
   ...(criteriaLines.length ? ["", ...criteriaLines] : []),
   ...(runQueryLines.length ? ["", ...runQueryLines] : []),
   ...(siteSummaryLines.length ? ["", ...siteSummaryLines] : []),
-  ...(newest.length ? ["", ...newest] : ["", "No new criteria-aligned listings in this run."]),
+  ...(siteDetailLines.length ? ["", "Detailed availabilities by site:", ...siteDetailLines] : []),
+  ...(topAvailabilityLines.length ? ["", "Top availabilities found this run:", ...topAvailabilityLines] : []),
+  ...(newest.length ? ["", ...newest] : ["", "No new criteria-aligned availabilities in this run."]),
 ].join("\n\n");
 
 const payload = { text };
