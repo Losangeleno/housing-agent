@@ -80,12 +80,40 @@ function extractBedrooms(text) {
   return Number(m[1]);
 }
 
+function extractBathrooms(text) {
+  const t = String(text || "").toLowerCase();
+  const m = t.match(/(\d+(?:\.\d+)?)\s*(bath|ba|bathroom)/);
+  if (!m) return 0;
+  return Number(m[1]);
+}
+
 async function fetchHousingSite({ source, org, siteUrl, queries, cities = [], listingType = "" }) {
-  const { data: html } = await httpGetWithRetry(
-    siteUrl,
-    { timeout: 30000, headers: { "User-Agent": "Mozilla/5.0" } },
-    `${source}:${org}`
-  );
+  const requestConfig = {
+    timeout: 30000,
+    headers: {
+      "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+      "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+      "Accept-Language": "en-US,en;q=0.9",
+      "Cache-Control": "no-cache",
+      "Pragma": "no-cache",
+      "Referer": "https://www.google.com/"
+    }
+  };
+
+  let html = "";
+  try {
+    const resp = await httpGetWithRetry(siteUrl, requestConfig, `${source}:${org}`);
+    html = String(resp.data || "");
+  } catch (err) {
+    const status = Number(err?.response?.status || 0);
+    if (status === 403 || status === 405 || status === 406 || status === 429) {
+      const mirrorUrl = `https://r.jina.ai/http://${siteUrl.replace(/^https?:\/\//i, "")}`;
+      const fallback = await httpGetWithRetry(mirrorUrl, requestConfig, `${source}:${org}:mirror`);
+      html = String(fallback.data || "");
+    } else {
+      throw err;
+    }
+  }
 
   const listings = [];
   const anchorRegex = /<a\b[^>]*href=["']([^"']+)["'][^>]*>([\s\S]*?)<\/a>/gi;
@@ -103,6 +131,7 @@ async function fetchHousingSite({ source, org, siteUrl, queries, cities = [], li
     const cityHits = findMatchedCities(`${title} ${href} ${org}`, cities);
     const rentValue = extractRentValue(title);
     const bedrooms = extractBedrooms(title);
+    const bathrooms = extractBathrooms(title);
 
     listings.push({
       source,
@@ -118,8 +147,37 @@ async function fetchHousingSite({ source, org, siteUrl, queries, cities = [], li
       whoMayApply: "See listing",
       pay: rentValue > 0 ? `$${rentValue}` : "",
       rentValue,
-      bedrooms
+      bedrooms,
+      bathrooms
     });
+  }
+
+  if (!listings.length && html) {
+    const lines = html.split(/\r?\n/).map((l) => normalizeText(l)).filter(Boolean);
+    for (const line of lines) {
+      if (!looksRelevant(line, queries)) continue;
+      const rentValue = extractRentValue(line);
+      const bedrooms = extractBedrooms(line);
+      const bathrooms = extractBathrooms(line);
+      listings.push({
+        source,
+        id: `${source}:${org}:${line.slice(0, 120)}`,
+        title: line.slice(0, 180),
+        org,
+        listingType,
+        locations: "San Diego County area",
+        openDate: "",
+        closeDate: "",
+        url: siteUrl,
+        summary: `Listing text discovered from ${org}.`,
+        whoMayApply: "See listing",
+        pay: rentValue > 0 ? `$${rentValue}` : "",
+        rentValue,
+        bedrooms,
+        bathrooms
+      });
+      if (listings.length >= 150) break;
+    }
   }
 
   const uniq = new Map();
@@ -151,4 +209,3 @@ export async function fetchHousingListings({ queries = ["affordable housing"], c
 
   return { listings, errors, sourceStats, boardsChecked: sites.length };
 }
-
