@@ -2,14 +2,6 @@ name: Housing Agent Schedule
 
 on:
   workflow_dispatch:
-  schedule:
-    # UTC schedule tuned for America/Los_Angeles housing-posting windows:
-    # Daily at 06:30, 12:30, and 19:30 PT
-    # PST (UTC-8): 14:30, 20:30, 03:30 UTC
-    # PDT (UTC-7): 13:30, 19:30, 02:30 UTC
-    - cron: "30 13 * * *"
-    - cron: "30 19 * * *"
-    - cron: "30 2 * * *"
 
 concurrency:
   group: housing-agent-schedule
@@ -39,13 +31,16 @@ jobs:
         run: |
           cat > .env << 'EOF'
           NODE_ENV=production
-          HOUSING_QUERY=affordable housing
-          HOUSING_QUERIES=apartment,rental,waitlist open,voucher
+          HOUSING_QUERY=senior veteran housing
+          HOUSING_QUERIES=senior housing,veteran housing,1 bedroom,1 bath,affordable housing,section 8,voucher
           PROFILE_PATH=./resume/housing-profile.pdf
-          MAX_RENT=2800
+          MAX_RENT=1700
           MIN_BEDROOMS=1
+          MAX_BEDROOMS=1
+          MIN_BATHROOMS=1
+          MAX_BATHROOMS=1
           POSITIVE_SCORE_MIN=50
-          MIN_PROFILE_KEYWORD_HITS=1
+          MIN_PROFILE_KEYWORD_HITS=0
           TEAMS_FLOW_URL=${{ secrets.TEAMS_FLOW_URL }}
           NODE_OPTIONS=--use-system-ca
           HTTP_RETRY_ATTEMPTS=3
