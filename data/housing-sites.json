@@ -18,6 +18,18 @@
     "listingType": "Market Rentals"
   },
   {
+    "source": "REALTOR_SD",
+    "org": "Realtor.com San Diego Rentals",
+    "siteUrl": "https://www.realtor.com/apartments/San-Diego_CA",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APARTMENTADVISOR_SD",
+    "org": "ApartmentAdvisor San Diego Studios",
+    "siteUrl": "https://www.apartmentadvisor.com/apartments/san-diego-ca/studio",
+    "listingType": "Market Rentals"
+  },
+  {
     "source": "APTS_SD",
     "org": "Apartments.com San Diego",
     "siteUrl": "https://www.apartments.com/san-diego-ca/",
