@@ -9,7 +9,7 @@
     "dev": "node --watch src/server.js",
     "collect:once": "node src/collector.js",
     "test:sample": "node tests/sample-query.js",
-    "notify:teams": "node src/notify-teams.js"
+    "notify:teams": "node --use-system-ca src/notify-teams.js"
   },
   "dependencies": {
     "axios": "^1.8.4",

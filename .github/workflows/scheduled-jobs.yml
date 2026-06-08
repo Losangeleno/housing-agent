@@ -2,6 +2,8 @@ name: Housing Agent Schedule
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "30 15 * * 1"
 
 concurrency:
   group: housing-agent-schedule
