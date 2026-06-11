@@ -20,12 +20,14 @@ app.get("/health", (_req, res) => res.json({ ok: true, agent: "housing-agent" })
 
 app.post("/housing/search", async (req, res) => {
   try {
-    const query = req.body?.query || process.env.HOUSING_QUERY || "affordable housing";
+    const query = req.body?.query || process.env.HOUSING_QUERY || "Arcata studio one bedroom apartment condo house rental";
     const queries = [query];
     const sites = fs.existsSync(sitesFile) ? JSON.parse(fs.readFileSync(sitesFile, "utf8")) : [];
-    const cities = fs.existsSync(allCitiesFile) ? JSON.parse(fs.readFileSync(allCitiesFile, "utf8")) : ["San Diego"];
+    const cities = fs.existsSync(allCitiesFile) ? JSON.parse(fs.readFileSync(allCitiesFile, "utf8")) : ["Arcata"];
+    const minRent = Number(req.body?.minRent || process.env.MIN_RENT || 0);
     const maxRent = Number(req.body?.maxRent || process.env.MAX_RENT || 0);
     const minBedrooms = Number(req.body?.minBedrooms || process.env.MIN_BEDROOMS || 0);
+    const requireRent = req.body?.requireRent ?? (String(process.env.REQUIRE_RENT || "1").toLowerCase() !== "0");
     const minKeywordHits = Number(process.env.MIN_PROFILE_KEYWORD_HITS || 1);
     const scoreThreshold = Number(process.env.POSITIVE_SCORE_MIN || 50);
 
@@ -35,9 +37,9 @@ app.post("/housing/search", async (req, res) => {
 
     const { listings, errors, boardsChecked } = await fetchHousingListings({ queries, cities, sites });
     const scored = listings
-      .map((l) => scoreListing(l, profileText, profileKeywords, { queries, maxRent, minBedrooms }))
+      .map((l) => scoreListing(l, profileText, profileKeywords, { queries, minRent, maxRent, minBedrooms }))
       .sort((a, b) => b.matchScore - a.matchScore);
-    const filtered = scored.filter((l) => l.matchScore >= scoreThreshold && isAlignedWithProfile(l, minKeywordHits, { maxRent, minBedrooms }));
+    const filtered = scored.filter((l) => l.matchScore >= scoreThreshold && isAlignedWithProfile(l, minKeywordHits, { minRent, maxRent, minBedrooms, requireRent }));
 
     res.json({
       ok: true,
@@ -57,4 +59,3 @@ const port = Number(process.env.PORT || 3010);
 app.listen(port, () => {
   console.log(`housing-agent listening on ${port}`);
 });
-

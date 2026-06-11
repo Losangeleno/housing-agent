@@ -1,6 +1,6 @@
 # housing-agent
 
-Automated San Diego housing listing monitor with scoring, reporting, and Teams notifications.
+Automated Arcata / Humboldt County housing listing monitor with scoring, reporting, and Teams notifications.
 
 ## What It Does
 
@@ -24,6 +24,7 @@ Edit `.env`:
 
 - `TEAMS_FLOW_URL`
 - `PROFILE_PATH` (optional, PDF with your housing preferences)
+- `MIN_RENT`
 - `MAX_RENT`
 - `MIN_BEDROOMS`
 - `HOUSING_QUERY` / `HOUSING_QUERIES`
@@ -44,7 +45,7 @@ npm start
 Search endpoint:
 
 ```powershell
-Invoke-RestMethod -Method Post -Uri "http://localhost:3010/housing/search" -ContentType "application/json" -Body '{"query":"affordable housing","maxRent":2800,"minBedrooms":1}'
+Invoke-RestMethod -Method Post -Uri "http://localhost:3010/housing/search" -ContentType "application/json" -Body '{"query":"Arcata studio one bedroom apartment condo house rental","minRent":500,"maxRent":1000,"minBedrooms":0}'
 ```
 
 ## Automation
@@ -53,5 +54,4 @@ GitHub Actions workflow:
 
 - `.github/workflows/scheduled-jobs.yml`
 
-Runs every 6 hours plus manual dispatch, then uploads `outputs/` as artifacts.
-
+Runs weekly plus manual dispatch, then uploads `outputs/` as artifacts.

@@ -15,7 +15,7 @@ jobs:
     timeout-minutes: 30
     permissions:
       contents: read
-      actions: read
+      actions: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -29,19 +29,32 @@ jobs:
       - name: Install deps
         run: npm ci
 
+      - name: Restore freshness state
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            outputs/housing_freshness.json
+            outputs/seen_ids.json
+          key: housing-freshness-${{ github.run_id }}
+          restore-keys: |
+            housing-freshness-
+
       - name: Create .env
         run: |
           cat > .env << 'EOF'
           NODE_ENV=production
-          HOUSING_QUERY=senior veteran housing
-          HOUSING_QUERIES=senior housing,veteran housing,1 bedroom,1 bath,affordable housing,section 8,voucher
+          HOUSING_QUERY=Arcata studio one bedroom apartment condo house rental
+          HOUSING_QUERIES=Arcata,Eureka,McKinleyville,Humboldt,studio,1 bedroom,one bedroom,1br,apartment,condo,house,rental,affordable housing,section 8,voucher
+          HOUSING_REGION_LABEL=Arcata / Humboldt County area
           PROFILE_PATH=./resume/housing-profile.pdf
-          MAX_RENT=1700
-          MIN_BEDROOMS=1
+          MIN_RENT=500
+          MAX_RENT=1000
+          REQUIRE_RENT=1
+          MIN_BEDROOMS=0
           MAX_BEDROOMS=1
-          MIN_BATHROOMS=1
-          MAX_BATHROOMS=1
-          POSITIVE_SCORE_MIN=50
+          MIN_BATHROOMS=0
+          MAX_BATHROOMS=0
+          POSITIVE_SCORE_MIN=45
           MIN_PROFILE_KEYWORD_HITS=0
           TEAMS_FLOW_URL=${{ secrets.TEAMS_FLOW_URL }}
           NODE_OPTIONS=--use-system-ca
@@ -63,3 +76,12 @@ jobs:
           name: housing-agent-outputs-${{ github.run_id }}
           path: outputs/
           if-no-files-found: warn
+
+      - name: Save freshness state
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            outputs/housing_freshness.json
+            outputs/seen_ids.json
+          key: housing-freshness-${{ github.run_id }}

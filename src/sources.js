@@ -2,6 +2,7 @@ import axios from "axios";
 
 const RETRY_ATTEMPTS = Number(process.env.HTTP_RETRY_ATTEMPTS || 3);
 const RETRY_BASE_MS = Number(process.env.HTTP_RETRY_BASE_MS || 1000);
+const REGION_LABEL = process.env.HOUSING_REGION_LABEL || "Arcata / Humboldt County area";
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -139,7 +140,7 @@ async function fetchHousingSite({ source, org, siteUrl, queries, cities = [], li
       title,
       org,
       listingType,
-      locations: cityHits.length ? cityHits.join("; ") : "San Diego County area",
+      locations: cityHits.length ? cityHits.join("; ") : REGION_LABEL,
       openDate: "",
       closeDate: "",
       url: href,
@@ -165,7 +166,7 @@ async function fetchHousingSite({ source, org, siteUrl, queries, cities = [], li
         title: line.slice(0, 180),
         org,
         listingType,
-        locations: "San Diego County area",
+        locations: REGION_LABEL,
         openDate: "",
         closeDate: "",
         url: siteUrl,

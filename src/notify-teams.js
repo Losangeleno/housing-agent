@@ -40,6 +40,23 @@ const summaryPath = "./outputs/run_summary.json";
 const allSitesCsvPath = "./outputs/all_sites_status.csv";
 const availabilityReportPath = "./outputs/site_availability_report.csv";
 const latestListingsPath = "./outputs/latest_listings.csv";
+const currentSuggestionsPath = "./outputs/current_suggestions.csv";
+const siteListingDetailsPath = "./outputs/site_listing_details.csv";
+const newSinceRefreshPath = "./outputs/new_since_last_refresh.csv";
+const removedSinceRefreshPath = "./outputs/removed_since_last_refresh.csv";
+
+function readCsvRows(filePath) {
+  if (!fs.existsSync(filePath)) return [];
+  const raw = fs.readFileSync(filePath, "utf8").trim();
+  if (!raw) return [];
+  const lines = raw.split(/\r?\n/);
+  if (lines.length <= 1) return [];
+  const headers = parseCsvLine(lines[0] || "");
+  return lines.slice(1).filter(Boolean).map((line) => {
+    const cols = parseCsvLine(line);
+    return Object.fromEntries(headers.map((h, i) => [h, cols[i] ?? ""]));
+  });
+}
 
 function summarizeErrorBuckets(rows) {
   const buckets = { network: 0, timeout: 0, blocked: 0, parse: 0, unknown: 0 };
@@ -94,7 +111,10 @@ let health = "unknown";
 let criteriaLines = [];
 let runQueryLines = [];
 let topAvailabilityLines = [];
+let currentSuggestionLines = [];
 let siteDetailLines = [];
+let freshListingLines = [];
+let removedListingCount = 0;
 if (fs.existsSync(summaryPath)) {
   try {
     const summary = JSON.parse(fs.readFileSync(summaryPath, "utf8"));
@@ -103,13 +123,22 @@ if (fs.existsSync(summaryPath)) {
     const newSaved = Number(summary.newSaved || 0);
     const threshold = Number(summary.threshold || 0);
     const minHits = Number(summary.minProfileKeywordHits || 0);
+    const minRent = Number(summary.minRent || 0);
     const maxRent = Number(summary.maxRent || 0);
     const minBedrooms = Number(summary.minBedrooms || 0);
+    const maxBedrooms = Number(summary.maxBedrooms || 0);
+    const minBathrooms = Number(summary.minBathrooms || 0);
+    const maxBathrooms = Number(summary.maxBathrooms || 0);
+    const requireRent = Boolean(summary.requireRent);
     const queries = Array.isArray(summary.queries) ? summary.queries : [];
 
+    const newSinceLastRefresh = Number(summary.newSinceLastRefresh ?? newSaved);
+    const stillActive = Number(summary.stillActive || 0);
+    const removedSinceLastRefresh = Number(summary.removedSinceLastRefresh || 0);
+
     criteriaLines = [
-      `Criteria stats: checked=${checked}, matched=${positives}, new_saved=${newSaved}`,
-      `Criteria settings: score_threshold=${threshold}, min_profile_keyword_hits=${minHits}, max_rent=${maxRent || "off"}, min_bedrooms=${minBedrooms || "off"}`
+      `Criteria stats: checked=${checked}, current_matches=${positives}, new_since_last_refresh=${newSinceLastRefresh}, still_active=${stillActive}, removed_or_no_longer_found=${removedSinceLastRefresh}`,
+      `Criteria settings: Arcata/Humboldt, studio_or_1br, rent_range=${minRent || "off"}-${maxRent || "off"}, require_visible_rent=${requireRent}, apartments/condos/houses, score_threshold=${threshold}, min_profile_keyword_hits=${minHits}, min_bedrooms=${minBedrooms || "off"}, max_bedrooms=${maxBedrooms || "off"}, min_bathrooms=${minBathrooms || "off"}, max_bathrooms=${maxBathrooms || "off"}`
     ];
 
     if (queries.length) {
@@ -120,6 +149,21 @@ if (fs.existsSync(summaryPath)) {
     runQueryLines = [];
   }
 }
+
+const freshListings = readCsvRows(newSinceRefreshPath);
+freshListingLines = freshListings.slice(0, 10).map((l, i) => {
+  const title = l.title || "Untitled availability";
+  const org = l.org || "Unknown org";
+  const listingType = l.listingType || "Housing";
+  const location = l.locations || "Arcata / Humboldt County";
+  const rent = l.rentValue ? `$${l.rentValue}` : "n/a";
+  const beds = l.bedrooms || "studio/unknown";
+  const baths = l.bathrooms || "n/a";
+  const score = l.matchScore || "n/a";
+  const url = l.url || "";
+  return `${i + 1}. ${title}\n   Type: ${listingType}\n   Org: ${org}\n   Score: ${score}\n   Location: ${location}\n   Rent: ${rent}\n   Beds: ${beds}\n   Baths: ${baths}\n   Link: ${url}`;
+});
+removedListingCount = readCsvRows(removedSinceRefreshPath).length;
 
 if (fs.existsSync(allSitesCsvPath)) {
   const statusRaw = fs.readFileSync(allSitesCsvPath, "utf8").trim();
@@ -177,6 +221,30 @@ if (fs.existsSync(allSitesCsvPath)) {
   }
 }
 
+if (fs.existsSync(currentSuggestionsPath)) {
+  const raw = fs.readFileSync(currentSuggestionsPath, "utf8").trim();
+  if (raw) {
+    const lines = raw.split(/\r?\n/);
+    const headers = parseCsvLine(lines[0] || "");
+    const listings = lines.slice(1).filter(Boolean).map((line) => {
+      const cols = parseCsvLine(line);
+      return Object.fromEntries(headers.map((h, i) => [h, cols[i] ?? ""]));
+    });
+    currentSuggestionLines = listings.slice(0, 10).map((l, i) => {
+      const title = l.title || "Untitled availability";
+      const org = l.org || "Unknown org";
+      const listingType = l.listingType || "Housing";
+      const location = l.locations || "Arcata / Humboldt County";
+      const rent = l.rentValue ? `$${l.rentValue}` : "n/a";
+      const beds = l.bedrooms || "studio/unknown";
+      const baths = l.bathrooms || "n/a";
+      const score = l.matchScore || "n/a";
+      const url = l.url || "";
+      return `${i + 1}. ${title}\n   Type: ${listingType}\n   Org: ${org}\n   Score: ${score}\n   Location: ${location}\n   Rent: ${rent}\n   Beds: ${beds}\n   Baths: ${baths}\n   Link: ${url}`;
+    });
+  }
+}
+
 if (fs.existsSync(latestListingsPath)) {
   const raw = fs.readFileSync(latestListingsPath, "utf8").trim();
   if (raw) {
@@ -191,14 +259,17 @@ if (fs.existsSync(latestListingsPath)) {
       const org = l.org || "Unknown org";
       const rent = l.rentValue ? `$${l.rentValue}` : "n/a";
       const beds = l.bedrooms || "n/a";
+      const baths = l.bathrooms || "n/a";
       const url = l.url || "";
-      return `${i + 1}. ${title}\n   Org: ${org}\n   Rent: ${rent}\n   Beds: ${beds}\n   Link: ${url}`;
+      return `${i + 1}. ${title}\n   Org: ${org}\n   Rent: ${rent}\n   Beds: ${beds}\n   Baths: ${baths}\n   Link: ${url}`;
     });
 
     const preferredOrgs = [
-      "HotPads San Diego",
-      "Craigslist San Diego Housing",
-      "AffordableHousing.com San Diego"
+      "Craigslist Humboldt Housing",
+      "Craigslist Arcata Targeted Map Search",
+      "Zillow Arcata Rentals",
+      "HotPads Arcata",
+      "AffordableHousing.com Humboldt County"
     ];
     const grouped = new Map();
     for (const listing of listings) {
@@ -215,12 +286,13 @@ if (fs.existsSync(latestListingsPath)) {
       const items = grouped.get(org) || [];
       if (!items.length) continue;
       detailBlocks.push(`- ${org} (${items.length} availabilities):`);
-      const itemLines = items.slice(0, 5).map((l, i) => {
+      const itemLines = items.map((l, i) => {
         const title = l.title || "Untitled availability";
         const rent = l.rentValue ? `$${l.rentValue}` : "n/a";
         const beds = l.bedrooms || "n/a";
+        const baths = l.bathrooms || "n/a";
         const url = l.url || "";
-        return `  ${i + 1}. ${title} | Rent: ${rent} | Beds: ${beds} | ${url}`;
+        return `  ${i + 1}. ${title} | Rent: ${rent} | Beds: ${beds} | Baths: ${baths} | ${url}`;
       });
       detailBlocks.push(...itemLines);
     }
@@ -229,13 +301,16 @@ if (fs.existsSync(latestListingsPath)) {
 }
 
 const text = [
-  `Housing Agent: ${newest.length} new criteria-aligned availabilities`,
+  `Housing Agent: weekly Arcata/Humboldt studio and 1-bedroom rentals, $500-$1,000/month`,
   ...(criteriaLines.length ? ["", ...criteriaLines] : []),
   ...(runQueryLines.length ? ["", ...runQueryLines] : []),
   ...(siteSummaryLines.length ? ["", ...siteSummaryLines] : []),
+  ...(freshListingLines.length ? ["", "New since last refresh:", ...freshListingLines] : ["", "New since last refresh: none."]),
+  ...(currentSuggestionLines.length ? ["", "Current recommendations this run:", ...currentSuggestionLines] : ["", "No current recommendations matched the full criteria in this run."]),
+  ...(removedListingCount ? ["", `Removed or no longer found this refresh: ${removedListingCount}`] : []),
   ...(siteDetailLines.length ? ["", "Detailed availabilities by site:", ...siteDetailLines] : []),
   ...(topAvailabilityLines.length ? ["", "Top availabilities found this run:", ...topAvailabilityLines] : []),
-  ...(newest.length ? ["", ...newest] : ["", "No new criteria-aligned availabilities in this run."]),
+  ...(newest.length ? ["", "New since last run:", ...newest] : ["", "No newly discovered criteria-aligned availabilities since the previous run."]),
 ].join("\n\n");
 
 const payload = { text };
@@ -243,6 +318,14 @@ if (fs.existsSync(availabilityReportPath)) {
   const bytes = fs.readFileSync(availabilityReportPath);
   payload.attachment = {
     fileName: "site_availability_report.csv",
+    mimeType: "text/csv",
+    base64: bytes.toString("base64")
+  };
+}
+if (fs.existsSync(siteListingDetailsPath)) {
+  const bytes = fs.readFileSync(siteListingDetailsPath);
+  payload.listingDetailsAttachment = {
+    fileName: "site_listing_details.csv",
     mimeType: "text/csv",
     base64: bytes.toString("base64")
   };

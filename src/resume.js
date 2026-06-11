@@ -10,9 +10,9 @@ export async function loadResumeText(path) {
 
 export function extractKeywords(text) {
   const seed = [
-    "downtown", "north park", "city heights", "chula vista", "la mesa",
-    "2 bedroom", "1 bedroom", "studio", "pet friendly", "parking",
-    "laundry", "in-unit", "voucher", "section 8", "accessible", "transit"
+    "arcata", "eureka", "mckinleyville", "humboldt", "blue lake",
+    "condo", "house", "apartment", "1 bedroom", "studio", "pet friendly",
+    "parking", "laundry", "in-unit", "voucher", "section 8", "accessible", "transit"
   ];
   const lower = (text || "").toLowerCase();
   return seed.filter(k => lower.includes(k));

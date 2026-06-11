@@ -1,62 +1,122 @@
 [
   {
-    "source": "SDHC",
-    "org": "San Diego Housing Commission",
-    "siteUrl": "https://www.sdhc.org/housing-opportunities/",
-    "listingType": "Public Housing"
-  },
-  {
-    "source": "ZILLOW_SD",
-    "org": "Zillow San Diego Rentals",
-    "siteUrl": "https://www.zillow.com/san-diego-ca/rentals/",
+    "source": "CRAIGSLIST_HUMBOLDT",
+    "org": "Craigslist Humboldt Housing",
+    "siteUrl": "https://humboldt.craigslist.org/search/apa?min_price=500&max_price=1000&min_bedrooms=0&max_bedrooms=1&sort=date",
     "listingType": "Market Rentals"
   },
   {
-    "source": "REDFIN_SD",
-    "org": "Redfin San Diego Rentals",
-    "siteUrl": "https://www.redfin.com/city/16904/CA/San-Diego/apartments-for-rent",
+    "source": "CRAIGSLIST_ARCATA_TARGETED",
+    "org": "Craigslist Arcata Targeted Map Search",
+    "siteUrl": "https://humboldt.craigslist.org/search/arcata-ca/apa?availabilityMode=2&lat=40.8665&lon=-124.0828&min_price=500&max_price=1000&max_bedrooms=1&search_distance=25&sort=date",
     "listingType": "Market Rentals"
   },
   {
-    "source": "REALTOR_SD",
-    "org": "Realtor.com San Diego Rentals",
-    "siteUrl": "https://www.realtor.com/apartments/San-Diego_CA",
+    "source": "ZILLOW_ARCATA",
+    "org": "Zillow Arcata Rentals",
+    "siteUrl": "https://www.zillow.com/arcata-ca/rentals/?price=500-1000&beds=0-1",
     "listingType": "Market Rentals"
   },
   {
-    "source": "APARTMENTADVISOR_SD",
-    "org": "ApartmentAdvisor San Diego Studios",
-    "siteUrl": "https://www.apartmentadvisor.com/apartments/san-diego-ca/studio",
+    "source": "ZILLOW_EUREKA",
+    "org": "Zillow Eureka Rentals",
+    "siteUrl": "https://www.zillow.com/eureka-ca/rentals/?price=500-1000&beds=0-1",
     "listingType": "Market Rentals"
   },
   {
-    "source": "APTS_SD",
-    "org": "Apartments.com San Diego",
-    "siteUrl": "https://www.apartments.com/san-diego-ca/",
+    "source": "APARTMENTS_ARCATA",
+    "org": "Apartments.com Arcata",
+    "siteUrl": "https://www.apartments.com/arcata-ca/studios-1-bedrooms-under-1000/",
     "listingType": "Market Rentals"
   },
   {
-    "source": "HOTPADS_SD",
-    "org": "HotPads San Diego",
-    "siteUrl": "https://hotpads.com/san-diego-ca/apartments-for-rent",
+    "source": "APARTMENTS_EUREKA",
+    "org": "Apartments.com Eureka",
+    "siteUrl": "https://www.apartments.com/eureka-ca/studios-1-bedrooms-under-1000/",
     "listingType": "Market Rentals"
   },
   {
-    "source": "AFF_HOUSING_SD",
-    "org": "AffordableHousing.com San Diego",
-    "siteUrl": "https://www.affordablehousing.com/san-diego-county-ca/",
+    "source": "HOTPADS_ARCATA",
+    "org": "HotPads Arcata",
+    "siteUrl": "https://hotpads.com/arcata-ca/apartments-for-rent?beds=0-1&price=500-1000",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "REALTOR_ARCATA",
+    "org": "Realtor.com Arcata Rentals",
+    "siteUrl": "https://www.realtor.com/apartments/Arcata_CA/price-500-1000/beds-studio-1",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "ZUMPER_ARCATA",
+    "org": "Zumper Arcata Rentals",
+    "siteUrl": "https://www.zumper.com/apartments-for-rent/arcata-ca/studios",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "PADMAPPER_ARCATA",
+    "org": "PadMapper Arcata Rentals",
+    "siteUrl": "https://www.padmapper.com/apartments/arcata-ca/studios",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "RENT_ARCATA",
+    "org": "Rent.com Arcata",
+    "siteUrl": "https://www.rent.com/california/arcata-apartments/studio",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APARTMENTGUIDE_ARCATA",
+    "org": "Apartment Guide Arcata",
+    "siteUrl": "https://www.apartmentguide.com/apartments/California/Arcata/studio/",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "AFFORDABLE_HOUSING_HUMBOLDT",
+    "org": "AffordableHousing.com Humboldt County",
+    "siteUrl": "https://www.affordablehousing.com/humboldt-county-ca/",
     "listingType": "Affordable Housing"
   },
   {
-    "source": "UCSD_OFFCAMPUS",
-    "org": "UC San Diego Off-Campus Housing",
-    "siteUrl": "https://ochs.ucsd.edu/",
-    "listingType": "Student / Community"
+    "source": "AFFORDABLE_HOUSING_ARCATA",
+    "org": "AffordableHousing.com Arcata",
+    "siteUrl": "https://www.affordablehousing.com/arcata-ca/",
+    "listingType": "Affordable Housing"
   },
   {
-    "source": "USD_OFFCAMPUS",
-    "org": "University of San Diego Off-Campus Housing",
-    "siteUrl": "https://www.sandiego.edu/off-campus-housing/housing-resources/",
-    "listingType": "Student / Community"
+    "source": "LOW_INCOME_HOUSING_ARCATA",
+    "org": "LowIncomeHousing.us Arcata",
+    "siteUrl": "https://www.lowincomehousing.us/CA/arcata.html",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "LOW_INCOME_HOUSING_HUMBOLDT",
+    "org": "LowIncomeHousing.us Humboldt County",
+    "siteUrl": "https://www.lowincomehousing.us/CA/humboldt.html",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "HUMBOLDT_HOUSING_AUTHORITY",
+    "org": "Housing Authority of the County of Humboldt",
+    "siteUrl": "https://eureka-humboldt-hsg.org/",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "CITY_ARCATA_HOUSING",
+    "org": "City of Arcata Housing",
+    "siteUrl": "https://www.cityofarcata.org/",
+    "listingType": "Local Housing Resources"
+  },
+  {
+    "source": "HUMBOLDT_PROPERTY_MANAGEMENT",
+    "org": "Humboldt Property Management",
+    "siteUrl": "https://www.humboldtpm.com/vacancies",
+    "listingType": "Property Manager"
+  },
+  {
+    "source": "REAL_PROPERTY_MANAGEMENT_HUMBOLDT",
+    "org": "Real Property Management Humboldt",
+    "siteUrl": "https://www.rpm101.com/houses-rent",
+    "listingType": "Property Manager"
   }
 ]
