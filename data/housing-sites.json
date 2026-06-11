@@ -1,5 +1,17 @@
 [
   {
+    "source": "HUMBOLDT_HOUSING_AUTHORITY",
+    "org": "Housing Authority of the County of Humboldt",
+    "siteUrl": "https://eureka-humboldt-hsg.org/",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "CITY_ARCATA_HOUSING",
+    "org": "City of Arcata Housing",
+    "siteUrl": "https://www.cityofarcata.org/",
+    "listingType": "Local Housing Resources"
+  },
+  {
     "source": "CRAIGSLIST_HUMBOLDT",
     "org": "Craigslist Humboldt Housing",
     "siteUrl": "https://humboldt.craigslist.org/search/apa?min_price=500&max_price=1000&min_bedrooms=0&max_bedrooms=1&sort=date",
@@ -24,6 +36,36 @@
     "listingType": "Market Rentals"
   },
   {
+    "source": "ZILLOW_MCKINLEYVILLE",
+    "org": "Zillow McKinleyville Rentals",
+    "siteUrl": "https://www.zillow.com/mckinleyville-ca/rentals/?price=500-1000&beds=0-1",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "REALTOR_ARCATA",
+    "org": "Realtor.com Arcata Rentals",
+    "siteUrl": "https://www.realtor.com/apartments/Arcata_CA/price-500-1000/beds-studio-1",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "REALTOR_EUREKA",
+    "org": "Realtor.com Eureka Rentals",
+    "siteUrl": "https://www.realtor.com/apartments/Eureka_CA/price-500-1000/beds-studio-1",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APARTMENTADVISOR_ARCATA",
+    "org": "ApartmentAdvisor Arcata Studios",
+    "siteUrl": "https://www.apartmentadvisor.com/apartments/arcata-ca/studio",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APARTMENTADVISOR_EUREKA",
+    "org": "ApartmentAdvisor Eureka Studios",
+    "siteUrl": "https://www.apartmentadvisor.com/apartments/eureka-ca/studio",
+    "listingType": "Market Rentals"
+  },
+  {
     "source": "APARTMENTS_ARCATA",
     "org": "Apartments.com Arcata",
     "siteUrl": "https://www.apartments.com/arcata-ca/studios-1-bedrooms-under-1000/",
@@ -36,39 +78,21 @@
     "listingType": "Market Rentals"
   },
   {
+    "source": "APARTMENTS_MCKINLEYVILLE",
+    "org": "Apartments.com McKinleyville",
+    "siteUrl": "https://www.apartments.com/mckinleyville-ca/studios-1-bedrooms-under-1000/",
+    "listingType": "Market Rentals"
+  },
+  {
     "source": "HOTPADS_ARCATA",
     "org": "HotPads Arcata",
     "siteUrl": "https://hotpads.com/arcata-ca/apartments-for-rent?beds=0-1&price=500-1000",
     "listingType": "Market Rentals"
   },
   {
-    "source": "REALTOR_ARCATA",
-    "org": "Realtor.com Arcata Rentals",
-    "siteUrl": "https://www.realtor.com/apartments/Arcata_CA/price-500-1000/beds-studio-1",
-    "listingType": "Market Rentals"
-  },
-  {
-    "source": "ZUMPER_ARCATA",
-    "org": "Zumper Arcata Rentals",
-    "siteUrl": "https://www.zumper.com/apartments-for-rent/arcata-ca/studios",
-    "listingType": "Market Rentals"
-  },
-  {
-    "source": "PADMAPPER_ARCATA",
-    "org": "PadMapper Arcata Rentals",
-    "siteUrl": "https://www.padmapper.com/apartments/arcata-ca/studios",
-    "listingType": "Market Rentals"
-  },
-  {
-    "source": "RENT_ARCATA",
-    "org": "Rent.com Arcata",
-    "siteUrl": "https://www.rent.com/california/arcata-apartments/studio",
-    "listingType": "Market Rentals"
-  },
-  {
-    "source": "APARTMENTGUIDE_ARCATA",
-    "org": "Apartment Guide Arcata",
-    "siteUrl": "https://www.apartmentguide.com/apartments/California/Arcata/studio/",
+    "source": "HOTPADS_EUREKA",
+    "org": "HotPads Eureka",
+    "siteUrl": "https://hotpads.com/eureka-ca/apartments-for-rent?beds=0-1&price=500-1000",
     "listingType": "Market Rentals"
   },
   {
@@ -84,9 +108,39 @@
     "listingType": "Affordable Housing"
   },
   {
+    "source": "AFFORDABLE_HOUSING_EUREKA",
+    "org": "AffordableHousing.com Eureka",
+    "siteUrl": "https://www.affordablehousing.com/eureka-ca/",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "SENIOR_HOUSING_NET_ARCATA",
+    "org": "SeniorHousingNet Arcata",
+    "siteUrl": "https://www.seniorhousingnet.com/seniorliving-search/arcata_ca",
+    "listingType": "Senior Living"
+  },
+  {
+    "source": "SENIOR_HOUSING_NET_EUREKA",
+    "org": "SeniorHousingNet Eureka",
+    "siteUrl": "https://www.seniorhousingnet.com/seniorliving-search/eureka_ca",
+    "listingType": "Senior Living"
+  },
+  {
+    "source": "AFTER55_HUMBOLDT",
+    "org": "After55 Humboldt County",
+    "siteUrl": "https://www.after55.com/ca/humboldt-county",
+    "listingType": "Senior Living"
+  },
+  {
     "source": "LOW_INCOME_HOUSING_ARCATA",
     "org": "LowIncomeHousing.us Arcata",
     "siteUrl": "https://www.lowincomehousing.us/CA/arcata.html",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "LOW_INCOME_HOUSING_EUREKA",
+    "org": "LowIncomeHousing.us Eureka",
+    "siteUrl": "https://www.lowincomehousing.us/CA/eureka.html",
     "listingType": "Affordable Housing"
   },
   {
@@ -96,16 +150,118 @@
     "listingType": "Affordable Housing"
   },
   {
-    "source": "HUMBOLDT_HOUSING_AUTHORITY",
-    "org": "Housing Authority of the County of Humboldt",
-    "siteUrl": "https://eureka-humboldt-hsg.org/",
+    "source": "MERCY_HOUSING",
+    "org": "Mercy Housing",
+    "siteUrl": "https://www.mercyhousing.org/find-housing/",
     "listingType": "Affordable Housing"
   },
   {
-    "source": "CITY_ARCATA_HOUSING",
-    "org": "City of Arcata Housing",
-    "siteUrl": "https://www.cityofarcata.org/",
-    "listingType": "Local Housing Resources"
+    "source": "BRIDGE_HOUSING",
+    "org": "BRIDGE Housing",
+    "siteUrl": "https://bridgehousing.com/properties/",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "NATIONAL_CORE_APARTMENTS",
+    "org": "National CORE",
+    "siteUrl": "https://nationalcore.org/find-apartment/",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "JAMBOREE_APARTMENTS",
+    "org": "Jamboree Housing",
+    "siteUrl": "https://www.jamboreehousing.com/pages/find-an-apartment",
+    "listingType": "Affordable Housing"
+  },
+  {
+    "source": "ZUMPER_ARCATA",
+    "org": "Zumper Arcata Rentals",
+    "siteUrl": "https://www.zumper.com/apartments-for-rent/arcata-ca/studios",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "ZUMPER_EUREKA",
+    "org": "Zumper Eureka Rentals",
+    "siteUrl": "https://www.zumper.com/apartments-for-rent/eureka-ca/studios",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "PADMAPPER_ARCATA",
+    "org": "PadMapper Arcata Rentals",
+    "siteUrl": "https://www.padmapper.com/apartments/arcata-ca/studios",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "PADMAPPER_EUREKA",
+    "org": "PadMapper Eureka Rentals",
+    "siteUrl": "https://www.padmapper.com/apartments/eureka-ca/studios",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APARTMENT_LIST_ARCATA",
+    "org": "Apartment List Arcata",
+    "siteUrl": "https://www.apartmentlist.com/ca/arcata",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APARTMENT_LIST_EUREKA",
+    "org": "Apartment List Eureka",
+    "siteUrl": "https://www.apartmentlist.com/ca/eureka",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "RENT_ARCATA",
+    "org": "Rent.com Arcata",
+    "siteUrl": "https://www.rent.com/california/arcata-apartments/studio",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "RENT_EUREKA",
+    "org": "Rent.com Eureka",
+    "siteUrl": "https://www.rent.com/california/eureka-apartments/studio",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "FORRENT_ARCATA",
+    "org": "ForRent Arcata",
+    "siteUrl": "https://www.forrent.com/find/CA/metro-Northern+California/Arcata/beds-studio",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APARTMENTGUIDE_ARCATA",
+    "org": "Apartment Guide Arcata",
+    "siteUrl": "https://www.apartmentguide.com/apartments/California/Arcata/studio/",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "APARTMENTGUIDE_EUREKA",
+    "org": "Apartment Guide Eureka",
+    "siteUrl": "https://www.apartmentguide.com/apartments/California/Eureka/studio/",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "RENTCAFE_ARCATA",
+    "org": "RentCafe Arcata",
+    "siteUrl": "https://www.rentcafe.com/apartments-for-rent/us/ca/arcata/",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "RENTCAFE_EUREKA",
+    "org": "RentCafe Eureka",
+    "siteUrl": "https://www.rentcafe.com/apartments-for-rent/us/ca/eureka/",
+    "listingType": "Market Rentals"
+  },
+  {
+    "source": "GREYSTAR_NORCAL",
+    "org": "Greystar Northern California",
+    "siteUrl": "https://www.greystar.com/apartments-for-rent/us/ca",
+    "listingType": "Property Manager"
+  },
+  {
+    "source": "FPI_MANAGEMENT_HUMBOLDT",
+    "org": "FPI Management Humboldt County",
+    "siteUrl": "https://www.fpimgt.com/searchlisting.aspx?state=CA&city=Arcata",
+    "listingType": "Property Manager"
   },
   {
     "source": "HUMBOLDT_PROPERTY_MANAGEMENT",
@@ -118,5 +274,11 @@
     "org": "Real Property Management Humboldt",
     "siteUrl": "https://www.rpm101.com/houses-rent",
     "listingType": "Property Manager"
+  },
+  {
+    "source": "CAL_POLY_HUMBOLDT_OFFCAMPUS",
+    "org": "Cal Poly Humboldt Off-Campus Housing",
+    "siteUrl": "https://housing.humboldt.edu/resident-resources/off-campus",
+    "listingType": "Student / Community"
   }
 ]

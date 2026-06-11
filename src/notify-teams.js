@@ -268,6 +268,8 @@ if (fs.existsSync(latestListingsPath)) {
       "Craigslist Humboldt Housing",
       "Craigslist Arcata Targeted Map Search",
       "Zillow Arcata Rentals",
+      "Apartments.com Arcata",
+      "Realtor.com Arcata Rentals",
       "HotPads Arcata",
       "AffordableHousing.com Humboldt County"
     ];
