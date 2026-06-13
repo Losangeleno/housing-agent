@@ -49,7 +49,7 @@ jobs:
           HOUSING_REGION_LABEL=Arcata / Humboldt County area
           PROFILE_PATH=./resume/housing-profile.pdf
           MIN_RENT=500
-          MAX_RENT=1700
+          MAX_RENT=1000
           REQUIRE_RENT=1
           MIN_BEDROOMS=0
           MAX_BEDROOMS=1
