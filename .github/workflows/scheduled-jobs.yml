@@ -3,7 +3,8 @@ name: Housing Agent Schedule
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 15 * * 1"
+    # Near real-time polling every 15 minutes (staggered for housing at minute 2/17/32/47)
+    - cron: "2,17,32,47 * * * *"
 
 concurrency:
   group: housing-agent-schedule
@@ -48,7 +49,7 @@ jobs:
           HOUSING_REGION_LABEL=Arcata / Humboldt County area
           PROFILE_PATH=./resume/housing-profile.pdf
           MIN_RENT=500
-          MAX_RENT=1000
+          MAX_RENT=1700
           REQUIRE_RENT=1
           MIN_BEDROOMS=0
           MAX_BEDROOMS=1
