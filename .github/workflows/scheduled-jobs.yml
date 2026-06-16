@@ -53,8 +53,8 @@ jobs:
           REQUIRE_RENT=1
           MIN_BEDROOMS=0
           MAX_BEDROOMS=1
-          MIN_BATHROOMS=0
-          MAX_BATHROOMS=0
+          MIN_BATHROOMS=1
+          MAX_BATHROOMS=1
           POSITIVE_SCORE_MIN=45
           MIN_PROFILE_KEYWORD_HITS=0
           TEAMS_FLOW_URL=${{ secrets.TEAMS_FLOW_URL }}

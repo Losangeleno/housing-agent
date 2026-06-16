@@ -280,5 +280,11 @@
     "org": "Cal Poly Humboldt Off-Campus Housing",
     "siteUrl": "https://housing.humboldt.edu/resident-resources/off-campus",
     "listingType": "Student / Community"
+  },
+  {
+    "source": "PACIFIC_PARTNERS_PROPERTY_MANAGEMENT",
+    "org": "Pacific Partners Property Management",
+    "siteUrl": "https://cbcpacificpartners.com/locale/arcata-mckinleyville/",
+    "listingType": "Property Manager"
   }
 ]
